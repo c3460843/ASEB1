@@ -33,18 +33,18 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dateLabel = new System.Windows.Forms.Label();
-            this.startTimeLabel = new System.Windows.Forms.Label();
+            this.speedSelectLabel = new System.Windows.Forms.Label();
+            this.measurementTrackBar = new System.Windows.Forms.TrackBar();
             this.intervalLabel = new System.Windows.Forms.Label();
+            this.startTimeLabel = new System.Windows.Forms.Label();
+            this.dateLabel = new System.Windows.Forms.Label();
+            this.powerAverageLabel = new System.Windows.Forms.Label();
+            this.heartRateAverageLabel = new System.Windows.Forms.Label();
+            this.altitudeAverageLabel = new System.Windows.Forms.Label();
+            this.speedAverageLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tablePage = new System.Windows.Forms.TabPage();
-            this.summaryPage = new System.Windows.Forms.TabPage();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.speedAverageLabel = new System.Windows.Forms.Label();
-            this.cadenceAverageLabel = new System.Windows.Forms.Label();
-            this.altitudeAverageLabel = new System.Windows.Forms.Label();
-            this.heartRateAverageLabel = new System.Windows.Forms.Label();
-            this.powerAverageLabel = new System.Windows.Forms.Label();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HeartRates = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Speed = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,16 +52,35 @@
             this.Altitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Power = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PBPIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.measurementTrackBar = new System.Windows.Forms.TrackBar();
-            this.speedSelectLabel = new System.Windows.Forms.Label();
+            this.summaryPage = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.graphPage = new System.Windows.Forms.TabPage();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.heartRateMaximumLabel = new System.Windows.Forms.Label();
+            this.heartRateMinimumLabel = new System.Windows.Forms.Label();
+            this.speedMaximumLabel = new System.Windows.Forms.Label();
+            this.totalDistanceLabel = new System.Windows.Forms.Label();
+            this.powerMaximumLabel = new System.Windows.Forms.Label();
+            this.altitudeMaximumLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.measurementTrackBar)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tablePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.measurementTrackBar)).BeginInit();
+            this.summaryPage.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.graphPage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,7 +90,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(757, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(730, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -94,28 +113,44 @@
             // 
             this.panel1.Controls.Add(this.speedSelectLabel);
             this.panel1.Controls.Add(this.measurementTrackBar);
-            this.panel1.Controls.Add(this.powerAverageLabel);
-            this.panel1.Controls.Add(this.heartRateAverageLabel);
-            this.panel1.Controls.Add(this.altitudeAverageLabel);
-            this.panel1.Controls.Add(this.cadenceAverageLabel);
-            this.panel1.Controls.Add(this.speedAverageLabel);
             this.panel1.Controls.Add(this.intervalLabel);
             this.panel1.Controls.Add(this.startTimeLabel);
             this.panel1.Controls.Add(this.dateLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(757, 61);
+            this.panel1.Size = new System.Drawing.Size(730, 61);
             this.panel1.TabIndex = 1;
             // 
-            // dateLabel
+            // speedSelectLabel
             // 
-            this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(12, 8);
-            this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(34, 13);
-            this.dateLabel.TabIndex = 0;
-            this.dateLabel.Text = "(date)";
+            this.speedSelectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.speedSelectLabel.AutoSize = true;
+            this.speedSelectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedSelectLabel.Location = new System.Drawing.Point(657, 41);
+            this.speedSelectLabel.Name = "speedSelectLabel";
+            this.speedSelectLabel.Size = new System.Drawing.Size(70, 12);
+            this.speedSelectLabel.TabIndex = 8;
+            this.speedSelectLabel.Text = "metric / imperial";
+            // 
+            // measurementTrackBar
+            // 
+            this.measurementTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.measurementTrackBar.Location = new System.Drawing.Point(660, 8);
+            this.measurementTrackBar.Maximum = 1;
+            this.measurementTrackBar.Name = "measurementTrackBar";
+            this.measurementTrackBar.Size = new System.Drawing.Size(58, 45);
+            this.measurementTrackBar.TabIndex = 3;
+            this.measurementTrackBar.ValueChanged += new System.EventHandler(this.measurementTrackBar_ValueChanged);
+            // 
+            // intervalLabel
+            // 
+            this.intervalLabel.AutoSize = true;
+            this.intervalLabel.Location = new System.Drawing.Point(271, 8);
+            this.intervalLabel.Name = "intervalLabel";
+            this.intervalLabel.Size = new System.Drawing.Size(47, 13);
+            this.intervalLabel.TabIndex = 2;
+            this.intervalLabel.Text = "(interval)";
             // 
             // startTimeLabel
             // 
@@ -126,14 +161,54 @@
             this.startTimeLabel.TabIndex = 1;
             this.startTimeLabel.Text = "(start time)";
             // 
-            // intervalLabel
+            // dateLabel
             // 
-            this.intervalLabel.AutoSize = true;
-            this.intervalLabel.Location = new System.Drawing.Point(258, 8);
-            this.intervalLabel.Name = "intervalLabel";
-            this.intervalLabel.Size = new System.Drawing.Size(47, 13);
-            this.intervalLabel.TabIndex = 2;
-            this.intervalLabel.Text = "(interval)";
+            this.dateLabel.AutoSize = true;
+            this.dateLabel.Location = new System.Drawing.Point(12, 8);
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(34, 13);
+            this.dateLabel.TabIndex = 0;
+            this.dateLabel.Text = "(date)";
+            // 
+            // powerAverageLabel
+            // 
+            this.powerAverageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.powerAverageLabel.AutoSize = true;
+            this.powerAverageLabel.Location = new System.Drawing.Point(495, 194);
+            this.powerAverageLabel.Name = "powerAverageLabel";
+            this.powerAverageLabel.Size = new System.Drawing.Size(84, 13);
+            this.powerAverageLabel.TabIndex = 7;
+            this.powerAverageLabel.Text = "(average power)";
+            // 
+            // heartRateAverageLabel
+            // 
+            this.heartRateAverageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.heartRateAverageLabel.AutoSize = true;
+            this.heartRateAverageLabel.Location = new System.Drawing.Point(487, 101);
+            this.heartRateAverageLabel.Name = "heartRateAverageLabel";
+            this.heartRateAverageLabel.Size = new System.Drawing.Size(100, 13);
+            this.heartRateAverageLabel.TabIndex = 6;
+            this.heartRateAverageLabel.Text = "(average heart rate)";
+            // 
+            // altitudeAverageLabel
+            // 
+            this.altitudeAverageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.altitudeAverageLabel.AutoSize = true;
+            this.altitudeAverageLabel.Location = new System.Drawing.Point(492, 258);
+            this.altitudeAverageLabel.Name = "altitudeAverageLabel";
+            this.altitudeAverageLabel.Size = new System.Drawing.Size(89, 13);
+            this.altitudeAverageLabel.TabIndex = 5;
+            this.altitudeAverageLabel.Text = "(average altitude)";
+            // 
+            // speedAverageLabel
+            // 
+            this.speedAverageLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.speedAverageLabel.AutoSize = true;
+            this.speedAverageLabel.Location = new System.Drawing.Point(495, 37);
+            this.speedAverageLabel.Name = "speedAverageLabel";
+            this.speedAverageLabel.Size = new System.Drawing.Size(84, 13);
+            this.speedAverageLabel.TabIndex = 3;
+            this.speedAverageLabel.Text = "(average speed)";
             // 
             // tabControl1
             // 
@@ -144,7 +219,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 85);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(757, 403);
+            this.tabControl1.Size = new System.Drawing.Size(730, 348);
             this.tabControl1.TabIndex = 2;
             // 
             // tablePage
@@ -153,20 +228,10 @@
             this.tablePage.Location = new System.Drawing.Point(4, 22);
             this.tablePage.Name = "tablePage";
             this.tablePage.Padding = new System.Windows.Forms.Padding(3);
-            this.tablePage.Size = new System.Drawing.Size(749, 377);
+            this.tablePage.Size = new System.Drawing.Size(722, 322);
             this.tablePage.TabIndex = 0;
             this.tablePage.Text = "Table";
             this.tablePage.UseVisualStyleBackColor = true;
-            // 
-            // summaryPage
-            // 
-            this.summaryPage.Location = new System.Drawing.Point(4, 22);
-            this.summaryPage.Name = "summaryPage";
-            this.summaryPage.Padding = new System.Windows.Forms.Padding(3);
-            this.summaryPage.Size = new System.Drawing.Size(749, 377);
-            this.summaryPage.TabIndex = 1;
-            this.summaryPage.Text = "Summary";
-            this.summaryPage.UseVisualStyleBackColor = true;
             // 
             // dataGridView
             // 
@@ -183,53 +248,8 @@
             this.dataGridView.Location = new System.Drawing.Point(3, 3);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView.Size = new System.Drawing.Size(743, 371);
+            this.dataGridView.Size = new System.Drawing.Size(716, 316);
             this.dataGridView.TabIndex = 0;
-            // 
-            // speedAverageLabel
-            // 
-            this.speedAverageLabel.AutoSize = true;
-            this.speedAverageLabel.Location = new System.Drawing.Point(12, 37);
-            this.speedAverageLabel.Name = "speedAverageLabel";
-            this.speedAverageLabel.Size = new System.Drawing.Size(84, 13);
-            this.speedAverageLabel.TabIndex = 3;
-            this.speedAverageLabel.Text = "(average speed)";
-            // 
-            // cadenceAverageLabel
-            // 
-            this.cadenceAverageLabel.AutoSize = true;
-            this.cadenceAverageLabel.Location = new System.Drawing.Point(132, 37);
-            this.cadenceAverageLabel.Name = "cadenceAverageLabel";
-            this.cadenceAverageLabel.Size = new System.Drawing.Size(97, 13);
-            this.cadenceAverageLabel.TabIndex = 4;
-            this.cadenceAverageLabel.Text = "(average cadence)";
-            // 
-            // altitudeAverageLabel
-            // 
-            this.altitudeAverageLabel.AutoSize = true;
-            this.altitudeAverageLabel.Location = new System.Drawing.Point(258, 37);
-            this.altitudeAverageLabel.Name = "altitudeAverageLabel";
-            this.altitudeAverageLabel.Size = new System.Drawing.Size(89, 13);
-            this.altitudeAverageLabel.TabIndex = 5;
-            this.altitudeAverageLabel.Text = "(average altitude)";
-            // 
-            // heartRateAverageLabel
-            // 
-            this.heartRateAverageLabel.AutoSize = true;
-            this.heartRateAverageLabel.Location = new System.Drawing.Point(381, 37);
-            this.heartRateAverageLabel.Name = "heartRateAverageLabel";
-            this.heartRateAverageLabel.Size = new System.Drawing.Size(100, 13);
-            this.heartRateAverageLabel.TabIndex = 6;
-            this.heartRateAverageLabel.Text = "(average heart rate)";
-            // 
-            // powerAverageLabel
-            // 
-            this.powerAverageLabel.AutoSize = true;
-            this.powerAverageLabel.Location = new System.Drawing.Point(531, 37);
-            this.powerAverageLabel.Name = "powerAverageLabel";
-            this.powerAverageLabel.Size = new System.Drawing.Size(84, 13);
-            this.powerAverageLabel.TabIndex = 7;
-            this.powerAverageLabel.Text = "(average power)";
             // 
             // Time
             // 
@@ -280,31 +300,168 @@
             this.PBPIndex.ReadOnly = true;
             this.PBPIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // measurementTrackBar
+            // summaryPage
             // 
-            this.measurementTrackBar.Location = new System.Drawing.Point(673, 18);
-            this.measurementTrackBar.Maximum = 1;
-            this.measurementTrackBar.Name = "measurementTrackBar";
-            this.measurementTrackBar.Size = new System.Drawing.Size(58, 45);
-            this.measurementTrackBar.TabIndex = 3;
-            this.measurementTrackBar.ValueChanged += new System.EventHandler(this.measurementTrackBar_ValueChanged);
+            this.summaryPage.Controls.Add(this.tableLayoutPanel1);
+            this.summaryPage.Location = new System.Drawing.Point(4, 22);
+            this.summaryPage.Name = "summaryPage";
+            this.summaryPage.Padding = new System.Windows.Forms.Padding(3);
+            this.summaryPage.Size = new System.Drawing.Size(722, 322);
+            this.summaryPage.TabIndex = 1;
+            this.summaryPage.Text = "Summary";
+            this.summaryPage.UseVisualStyleBackColor = true;
             // 
-            // speedSelectLabel
+            // tableLayoutPanel1
             // 
-            this.speedSelectLabel.AutoSize = true;
-            this.speedSelectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.speedSelectLabel.Location = new System.Drawing.Point(669, 46);
-            this.speedSelectLabel.Name = "speedSelectLabel";
-            this.speedSelectLabel.Size = new System.Drawing.Size(70, 12);
-            this.speedSelectLabel.TabIndex = 8;
-            this.speedSelectLabel.Text = "metric / imperial";
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.heartRateAverageLabel, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.powerAverageLabel, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.speedAverageLabel, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.altitudeAverageLabel, 1, 11);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.heartRateMaximumLabel, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.heartRateMinimumLabel, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.speedMaximumLabel, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.totalDistanceLabel, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.powerMaximumLabel, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.altitudeMaximumLabel, 1, 12);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 13;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 1.980198F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 1.980198F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 1.980198F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.405941F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(716, 316);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(119, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Total Distance Covered";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(138, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Average Speed";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(136, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Maximum Speed";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(128, 101);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(102, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Average Heart Rate";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(126, 130);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Maximum Heart Rate";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(127, 159);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Minimum Heart Rate";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(139, 194);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Average Power";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(137, 223);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Maximum Power";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(136, 258);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(85, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Average Altitude";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(134, 291);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(89, 13);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Maximum Altitude";
             // 
             // graphPage
             // 
             this.graphPage.Controls.Add(this.zedGraphControl1);
             this.graphPage.Location = new System.Drawing.Point(4, 22);
             this.graphPage.Name = "graphPage";
-            this.graphPage.Size = new System.Drawing.Size(749, 377);
+            this.graphPage.Size = new System.Drawing.Size(722, 322);
             this.graphPage.TabIndex = 2;
             this.graphPage.Text = "Graph";
             this.graphPage.UseVisualStyleBackColor = true;
@@ -321,28 +478,101 @@
             this.zedGraphControl1.ScrollMinX = 0D;
             this.zedGraphControl1.ScrollMinY = 0D;
             this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(749, 377);
+            this.zedGraphControl1.Size = new System.Drawing.Size(722, 322);
             this.zedGraphControl1.TabIndex = 0;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar1.Location = new System.Drawing.Point(0, 428);
+            this.progressBar1.MaximumSize = new System.Drawing.Size(0, 5);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(730, 5);
+            this.progressBar1.TabIndex = 3;
+            // 
+            // heartRateMaximumLabel
+            // 
+            this.heartRateMaximumLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.heartRateMaximumLabel.AutoSize = true;
+            this.heartRateMaximumLabel.Location = new System.Drawing.Point(485, 130);
+            this.heartRateMaximumLabel.Name = "heartRateMaximumLabel";
+            this.heartRateMaximumLabel.Size = new System.Drawing.Size(104, 13);
+            this.heartRateMaximumLabel.TabIndex = 10;
+            this.heartRateMaximumLabel.Text = "(maximum heart rate)";
+            // 
+            // heartRateMinimumLabel
+            // 
+            this.heartRateMinimumLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.heartRateMinimumLabel.AutoSize = true;
+            this.heartRateMinimumLabel.Location = new System.Drawing.Point(486, 159);
+            this.heartRateMinimumLabel.Name = "heartRateMinimumLabel";
+            this.heartRateMinimumLabel.Size = new System.Drawing.Size(101, 13);
+            this.heartRateMinimumLabel.TabIndex = 11;
+            this.heartRateMinimumLabel.Text = "(minimum heart rate)";
+            // 
+            // speedMaximumLabel
+            // 
+            this.speedMaximumLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.speedMaximumLabel.AutoSize = true;
+            this.speedMaximumLabel.Location = new System.Drawing.Point(493, 66);
+            this.speedMaximumLabel.Name = "speedMaximumLabel";
+            this.speedMaximumLabel.Size = new System.Drawing.Size(88, 13);
+            this.speedMaximumLabel.TabIndex = 12;
+            this.speedMaximumLabel.Text = "(maximum speed)";
+            // 
+            // totalDistanceLabel
+            // 
+            this.totalDistanceLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.totalDistanceLabel.AutoSize = true;
+            this.totalDistanceLabel.Location = new System.Drawing.Point(499, 8);
+            this.totalDistanceLabel.Name = "totalDistanceLabel";
+            this.totalDistanceLabel.Size = new System.Drawing.Size(76, 13);
+            this.totalDistanceLabel.TabIndex = 13;
+            this.totalDistanceLabel.Text = "(total distance)";
+            // 
+            // powerMaximumLabel
+            // 
+            this.powerMaximumLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.powerMaximumLabel.AutoSize = true;
+            this.powerMaximumLabel.Location = new System.Drawing.Point(493, 223);
+            this.powerMaximumLabel.Name = "powerMaximumLabel";
+            this.powerMaximumLabel.Size = new System.Drawing.Size(88, 13);
+            this.powerMaximumLabel.TabIndex = 14;
+            this.powerMaximumLabel.Text = "(maximum power)";
+            // 
+            // altitudeMaximumLabel
+            // 
+            this.altitudeMaximumLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.altitudeMaximumLabel.AutoSize = true;
+            this.altitudeMaximumLabel.Location = new System.Drawing.Point(490, 291);
+            this.altitudeMaximumLabel.Name = "altitudeMaximumLabel";
+            this.altitudeMaximumLabel.Size = new System.Drawing.Size(93, 13);
+            this.altitudeMaximumLabel.TabIndex = 15;
+            this.altitudeMaximumLabel.Text = "(maximum altitude)";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(757, 488);
+            this.ClientSize = new System.Drawing.Size(730, 433);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ASEB1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.measurementTrackBar)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tablePage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.measurementTrackBar)).EndInit();
+            this.summaryPage.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.graphPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -366,7 +596,6 @@
         private System.Windows.Forms.Label powerAverageLabel;
         private System.Windows.Forms.Label heartRateAverageLabel;
         private System.Windows.Forms.Label altitudeAverageLabel;
-        private System.Windows.Forms.Label cadenceAverageLabel;
         private System.Windows.Forms.Label speedSelectLabel;
         private System.Windows.Forms.TrackBar measurementTrackBar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
@@ -378,6 +607,24 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PBPIndex;
         private System.Windows.Forms.TabPage graphPage;
         private ZedGraph.ZedGraphControl zedGraphControl1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label heartRateMaximumLabel;
+        private System.Windows.Forms.Label heartRateMinimumLabel;
+        private System.Windows.Forms.Label speedMaximumLabel;
+        private System.Windows.Forms.Label totalDistanceLabel;
+        private System.Windows.Forms.Label powerMaximumLabel;
+        private System.Windows.Forms.Label altitudeMaximumLabel;
     }
 }
 

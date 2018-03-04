@@ -19,10 +19,16 @@ namespace Data_Analysis_Software_Part_1
         int counter = 0;
         int timeSecs = 0;
         double speedTotal = 0;
-        int cadenceTotal = 0; 
+        double speedMaximum = 0;
         double altitudeTotal = 0;
+        double altitudeMaximum = 0;
         int heartRateTotal = 0;
+        int heartRateMaximum = 0;
+        int heartRateMinimum = 0;
         int powerTotal = 0;
+        int powerMaximum = 0;
+        decimal distanceTotal = 0;
+        bool distanceCalculationFlag = false;
         int version;
         bool sModeSpeed;
         bool sModeCadence;
@@ -40,6 +46,7 @@ namespace Data_Analysis_Software_Part_1
         List<int> heartRateList = new List<int>();
         List<int> powerList = new List<int>();
         List<int> pBBIList = new List<int>();
+        List<decimal> distanceList = new List<decimal>();
 
         public Form1()
         {
@@ -110,16 +117,21 @@ namespace Data_Analysis_Software_Part_1
                 if (data == true)
                 {
                     TimeSpan timeSpan = TimeSpan.FromSeconds(timeSecs);
-                    if (!line.Contains("HRData")) {
+                    if (!line.Contains("HRData"))
+                    {
                         timeSecs++;
                         string timeString = timeSpan.ToString(@"hh\:mm\:ss");
                         String[] lineArray = line.Split();
                         timeList.Add(timeString);
                         heartRateList.Add(Int32.Parse(lineArray[0]));
-                        if (sModeSpeed == true) { speedList.Add(Int32.Parse(lineArray[1])); }
-                        if (sModeCadence == true) { cadenceList.Add(Int32.Parse(lineArray[2])); }
-                        if (sModeAltitude == true) { altitudeList.Add(Int32.Parse(lineArray[3])); }
-                        if (sModePower == true) { powerList.Add(Int32.Parse(lineArray[4])); }
+                        if (sModeSpeed == true)
+                        {
+                            speedList.Add(Int32.Parse(lineArray[1]));
+                            distanceList.Add(Decimal.Parse(lineArray[1]) / 3600);
+                        }
+                        if (sModeCadence == true)               { cadenceList.Add(Int32.Parse(lineArray[2])); }
+                        if (sModeAltitude == true)              { altitudeList.Add(Int32.Parse(lineArray[3])); }
+                        if (sModePower == true)                 { powerList.Add(Int32.Parse(lineArray[4])); }
                         if (sModePowerLeftRightBalance == true) { pBBIList.Add(Int32.Parse(lineArray[5])); }
                     }
                 }
@@ -127,7 +139,7 @@ namespace Data_Analysis_Software_Part_1
             }
             file.Close();
             AddRows();
-            CalculateAverages();
+            Calculate();
         }
 
         private void AddRows()
@@ -146,10 +158,10 @@ namespace Data_Analysis_Software_Part_1
             }
         }
 
-        private void CalculateAverages()
+        private void Calculate()
         {
             speedTotal = 0;
-            cadenceTotal = 0;
+            speedMaximum = 0;
             altitudeTotal = 0;
             heartRateTotal = 0;
             powerTotal = 0;
@@ -166,10 +178,6 @@ namespace Data_Analysis_Software_Part_1
                 if (measurementTrackBar.Value == 0) { speedAverageLabel.Text = (speedAverage / 10).ToString() + "km/h"; }
                 else if (measurementTrackBar.Value == 1) { speedAverageLabel.Text = (speedAverage / 10).ToString() + "mph"; }
 
-                foreach (int cadenceInt in cadenceList) { cadenceTotal += cadenceInt; }
-                double cadenceAverage = cadenceTotal / cadenceList.Count;
-                cadenceAverageLabel.Text = cadenceAverage.ToString() + "rpm";
-
                 foreach (double altitudeDouble in altitudeList) { altitudeTotal += altitudeDouble; }
                 double altitudeAverage = altitudeTotal / altitudeList.Count;
                 altitudeAverage = Math.Round(altitudeAverage, 2);
@@ -178,12 +186,39 @@ namespace Data_Analysis_Software_Part_1
 
                 foreach (int powerInt in powerList) { powerTotal += powerInt; }
                 double powerAverage = powerTotal / powerList.Count;
-                powerAverageLabel.Text = powerAverage.ToString() + "Watts";
+                powerAverageLabel.Text = powerAverage.ToString() + "W";
             }
             catch (System.DivideByZeroException)
             {
-
+                //No user dialogue needed.
             }
+
+            foreach (double speedInt in speedList)      { if (speedInt > speedMaximum) { speedMaximum = speedInt; } }
+            if (measurementTrackBar.Value == 0)      { speedMaximumLabel.Text = (speedMaximum / 10) + "km/h"; }
+            else if (measurementTrackBar.Value == 1) { speedMaximumLabel.Text = (speedMaximum / 10) + "mph"; }
+
+            if (distanceCalculationFlag == false)
+            {
+                foreach (decimal distanceDecimal in distanceList) { distanceTotal += distanceDecimal; }
+                distanceTotal = Math.Round(distanceTotal, 1);
+                distanceCalculationFlag = true;
+            }
+            if (measurementTrackBar.Value == 0) { totalDistanceLabel.Text = (distanceTotal / 10) + "km"; }
+            else if (measurementTrackBar.Value == 1) { totalDistanceLabel.Text = (distanceTotal / 10) + "miles"; }
+
+            foreach (int heartRateInt in heartRateList) { if (heartRateInt > heartRateMaximum) { heartRateMaximum = heartRateInt; } }
+            heartRateMaximumLabel.Text = heartRateMaximum + "bpm";
+
+            heartRateMinimum = heartRateList[0];
+            foreach (int heartRateInt in heartRateList) { if (heartRateInt < heartRateMinimum) { heartRateMinimum = heartRateInt; } }
+            heartRateMinimumLabel.Text = heartRateMinimum + "bpm";
+
+            foreach (int powerInt in powerList) { if (powerInt > powerMaximum) { powerMaximum = powerInt; } }
+            powerMaximumLabel.Text = powerMaximum + "W";
+
+            foreach (double altitudeInt in altitudeList) { if (altitudeInt > altitudeMaximum) { altitudeMaximum = altitudeInt; } }
+            if (measurementTrackBar.Value == 0) { altitudeMaximumLabel.Text = altitudeMaximum + "m"; }
+            else if (measurementTrackBar.Value == 1) { altitudeMaximumLabel.Text = altitudeMaximum + "ft"; }
         }
 
         private void PlotGraph()
@@ -193,20 +228,20 @@ namespace Data_Analysis_Software_Part_1
             GraphPane myPane = zedGraphControl1.GraphPane;            
 
             // Set the Titles
-            myPane.Title.Text = "";
-            myPane.XAxis.Title.Text = "X?";
-            myPane.YAxis.Title.Text = "Y?";
+            //myPane.Title.Text = "";
+            myPane.XAxis.Title.Text = "Time (Seconds)";
+            //myPane.YAxis.Title.Text = "Y?";
             //myPane.XAxis.Scale.MajorStep = 60;
             //myPane.XAxis.Scale.MinorStep = 1;
-            myPane.XAxis.Scale.Mag = 0;
-            //myPane.XAxis.Scale.Max = timeSecs;
-            myPane.XAxis.Type = AxisType.Date;
-            myPane.XAxis.Scale.Format = "HH:mm:ss";
+            //myPane.XAxis.Scale.Mag = 0;
+            myPane.XAxis.Scale.Max = timeSecs;
+            //myPane.XAxis.Type = AxisType.Date;
+            //myPane.XAxis.Scale.Format = "HH:mm:ss";
 
-            myPane.XAxis.Scale.MinorUnit = DateUnit.Second;         
-            myPane.XAxis.Scale.MajorUnit = DateUnit.Minute;
-            //myPane.XAxis.Scale.MinorStep = 10;                        
-            //myPane.XAxis.Scale.MajorStep = 60;
+            //myPane.XAxis.Scale.MinorUnit = DateUnit.Second;         
+            //myPane.XAxis.Scale.MajorUnit = DateUnit.Minute;
+            //myPane.XAxis.Scale.MinorStep = 5;                        
+            //myPane.XAxis.Scale.MajorStep = 30;
 
 
 
@@ -218,15 +253,13 @@ namespace Data_Analysis_Software_Part_1
 
             for (int i = 0; i < timeSecs; i++)
             {
-
-
                 speedPairList.Add(i, (speedList[i]/10));
                 cadencePairList.Add(i, cadenceList[i]);
                 altitudePairList.Add(i, altitudeList[i]);
                 heartRatePairList.Add(i, heartRateList[i]);
                 powerPairList.Add(i, powerList[i]);
 
-                Console.WriteLine(i);
+                //Console.WriteLine(i);
             }
 
             LineItem speedCurve = myPane.AddCurve("Speed",
@@ -269,6 +302,9 @@ namespace Data_Analysis_Software_Part_1
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
 
+            if(sModeUnitStandard == false)      { measurementTrackBar.Value = 0; }
+            else if (sModeUnitStandard == true) { measurementTrackBar.Value = 1; }
+            
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -310,9 +346,13 @@ namespace Data_Analysis_Software_Part_1
             {
                 altitudeList[i] = Math.Round(altitudeList[i] * 3.2808);
             }
+
+            decimal measurementMultiplier = Convert.ToDecimal(0.6214);
+            distanceTotal = Math.Round(distanceTotal * measurementMultiplier, 1);
+
             AddRows();
             Thread.Sleep(50);
-            CalculateAverages();
+            Calculate();
             PlotGraph();
         }
 
@@ -328,9 +368,13 @@ namespace Data_Analysis_Software_Part_1
             {
                 altitudeList[i] = Math.Round(altitudeList[i] * 0.3048);
             }
+
+            decimal measurementMultiplier = Convert.ToDecimal(1.6093);
+            distanceTotal = Math.Round(distanceTotal * measurementMultiplier, 1);
+
             AddRows();
             Thread.Sleep(50);
-            CalculateAverages();
+            Calculate();
             PlotGraph();
         }
     }
