@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,7 +38,7 @@
             this.intervalLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tablePage = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.summaryPage = new System.Windows.Forms.TabPage();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.speedAverageLabel = new System.Windows.Forms.Label();
             this.cadenceAverageLabel = new System.Windows.Forms.Label();
@@ -53,12 +54,15 @@
             this.PBPIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.measurementTrackBar = new System.Windows.Forms.TrackBar();
             this.speedSelectLabel = new System.Windows.Forms.Label();
+            this.graphPage = new System.Windows.Forms.TabPage();
+            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tablePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.measurementTrackBar)).BeginInit();
+            this.graphPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -134,7 +138,8 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tablePage);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.summaryPage);
+            this.tabControl1.Controls.Add(this.graphPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 85);
             this.tabControl1.Name = "tabControl1";
@@ -153,15 +158,15 @@
             this.tablePage.Text = "Table";
             this.tablePage.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // summaryPage
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(749, 377);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.summaryPage.Location = new System.Drawing.Point(4, 22);
+            this.summaryPage.Name = "summaryPage";
+            this.summaryPage.Padding = new System.Windows.Forms.Padding(3);
+            this.summaryPage.Size = new System.Drawing.Size(749, 377);
+            this.summaryPage.TabIndex = 1;
+            this.summaryPage.Text = "Summary";
+            this.summaryPage.UseVisualStyleBackColor = true;
             // 
             // dataGridView
             // 
@@ -294,6 +299,31 @@
             this.speedSelectLabel.TabIndex = 8;
             this.speedSelectLabel.Text = "metric / imperial";
             // 
+            // graphPage
+            // 
+            this.graphPage.Controls.Add(this.zedGraphControl1);
+            this.graphPage.Location = new System.Drawing.Point(4, 22);
+            this.graphPage.Name = "graphPage";
+            this.graphPage.Size = new System.Drawing.Size(749, 377);
+            this.graphPage.TabIndex = 2;
+            this.graphPage.Text = "Graph";
+            this.graphPage.UseVisualStyleBackColor = true;
+            // 
+            // zedGraphControl1
+            // 
+            this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zedGraphControl1.Location = new System.Drawing.Point(0, 0);
+            this.zedGraphControl1.Name = "zedGraphControl1";
+            this.zedGraphControl1.ScrollGrace = 0D;
+            this.zedGraphControl1.ScrollMaxX = 0D;
+            this.zedGraphControl1.ScrollMaxY = 0D;
+            this.zedGraphControl1.ScrollMaxY2 = 0D;
+            this.zedGraphControl1.ScrollMinX = 0D;
+            this.zedGraphControl1.ScrollMinY = 0D;
+            this.zedGraphControl1.ScrollMinY2 = 0D;
+            this.zedGraphControl1.Size = new System.Drawing.Size(749, 377);
+            this.zedGraphControl1.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,6 +343,7 @@
             this.tablePage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.measurementTrackBar)).EndInit();
+            this.graphPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,7 +360,7 @@
         private System.Windows.Forms.Label intervalLabel;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tablePage;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage summaryPage;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Label speedAverageLabel;
         private System.Windows.Forms.Label powerAverageLabel;
@@ -345,6 +376,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Altitude;
         private System.Windows.Forms.DataGridViewTextBoxColumn Power;
         private System.Windows.Forms.DataGridViewTextBoxColumn PBPIndex;
+        private System.Windows.Forms.TabPage graphPage;
+        private ZedGraph.ZedGraphControl zedGraphControl1;
     }
 }
 

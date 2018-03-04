@@ -8,3 +8,4 @@ C:\Users\Admin\source\repos\Data Analysis Software Part 1\Data Analysis Software
 C:\Users\Admin\source\repos\Data Analysis Software Part 1\Data Analysis Software Part 1\obj\Debug\Data Analysis Software Part 1.csproj.CoreCompileInputs.cache
 C:\Users\Admin\source\repos\Data Analysis Software Part 1\Data Analysis Software Part 1\obj\Debug\Data Analysis Software Part 1.exe
 C:\Users\Admin\source\repos\Data Analysis Software Part 1\Data Analysis Software Part 1\obj\Debug\Data Analysis Software Part 1.pdb
+C:\Users\Admin\source\repos\Data Analysis Software Part 1\Data Analysis Software Part 1\bin\Debug\ZedGraph.dll
