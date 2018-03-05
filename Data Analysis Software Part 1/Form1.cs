@@ -175,13 +175,13 @@ namespace Data_Analysis_Software_Part_1
                 if (sModeAltitude==true) { altitudeValue = altitudeList[i].ToString(); }
                 if (sModePower == true)
                 {
-                    if (powerTrackBar.Value == 0)      { powerValue = powerList[i].ToString(); }
-                    else if (powerTrackBar.Value == 1) { powerValue = Math.Round(powerPercentageList[i], 2).ToString(); }
+                    if (powerTrackBar.Value == 0)      { powerValue = powerList[i].ToString();  }
+                    else if (powerTrackBar.Value == 1) { powerValue = Math.Round(powerPercentageList[i], 2).ToString();  }
                 }
                 if (sModeHRCC == true)
                 {
                     if (heartRateTrackBar.Value == 0)      { heartRateValue = heartRateList[i].ToString(); }
-                    else if (heartRateTrackBar.Value == 1) { heartRateValue = Math.Round(heartRatePercentageList[i], 2).ToString(); }
+                    else if (heartRateTrackBar.Value == 1) { heartRateValue = Math.Round(heartRatePercentageList[i], 2).ToString();  }
                 }
                 dataGridView.Rows.Add(timeList[i], heartRateValue, speedValue, cadenceValue, altitudeValue, powerValue, pBBIList[i]);
             }
@@ -436,6 +436,8 @@ namespace Data_Analysis_Software_Part_1
 
             distanceTotal = Math.Round(distanceTotal * (Convert.ToDecimal(0.6214)), 1);
             altitudeMaximum = Math.Round(altitudeMaximum * 3.2808);
+            dataGridView.Columns[2].HeaderText = "Speed (mph)";
+            dataGridView.Columns[4].HeaderText = "Altitude (ft)";
         }
 
         /// <summary>
@@ -455,6 +457,8 @@ namespace Data_Analysis_Software_Part_1
 
             distanceTotal = Math.Round(distanceTotal * (Convert.ToDecimal(1.6093)), 1);
             altitudeMaximum = Math.Round(altitudeMaximum * 0.3048);
+            dataGridView.Columns[2].HeaderText = "Speed (km/h)";
+            dataGridView.Columns[4].HeaderText = "Altitude (m)";
         }
 
         /// <summary>
@@ -470,7 +474,10 @@ namespace Data_Analysis_Software_Part_1
                 dataGridView.Rows.Clear();
                 AddRows();
             }
+            if (heartRateTrackBar.Value == 0)      { dataGridView.Columns[1].HeaderText = "Heart Rate (bpm)"; }
+            else if (heartRateTrackBar.Value == 1) { dataGridView.Columns[1].HeaderText = "Heart Rate (%ofMax)"; }
         }
+        
         /// <summary>
         /// Listens for change in numerical/percentage power trackbar value change.
         /// </summary>
@@ -484,6 +491,8 @@ namespace Data_Analysis_Software_Part_1
                 dataGridView.Rows.Clear();
                 AddRows();
             }
+            if (powerTrackBar.Value == 0) { dataGridView.Columns[5].HeaderText = "Power (Watts)"; }
+            else if (powerTrackBar.Value == 1) { dataGridView.Columns[5].HeaderText = "Power (%ofFTP)"; }
         }
 
         /// <summary>
