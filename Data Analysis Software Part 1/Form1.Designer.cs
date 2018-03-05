@@ -36,13 +36,15 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
+            this.setFTPButton = new System.Windows.Forms.Button();
+            this.setBPMButton = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.powerTrackBar = new System.Windows.Forms.TrackBar();
             this.heartRateTrackBar = new System.Windows.Forms.TrackBar();
             this.fTPTextBox = new System.Windows.Forms.TextBox();
-            this.heartRateMaxTextLabel = new System.Windows.Forms.Label();
             this.heartRateMaxTextBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -84,8 +86,10 @@
             this.totalDistanceLabel = new System.Windows.Forms.Label();
             this.powerMaximumLabel = new System.Windows.Forms.Label();
             this.altitudeMaximumLabel = new System.Windows.Forms.Label();
-            this.graphPage = new System.Windows.Forms.TabPage();
+            this.graphPage1 = new System.Windows.Forms.TabPage();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.graphPage2 = new System.Windows.Forms.TabPage();
+            this.zedGraphControl2 = new ZedGraph.ZedGraphControl();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -97,7 +101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.summaryPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.graphPage.SuspendLayout();
+            this.graphPage1.SuspendLayout();
+            this.graphPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -123,15 +128,16 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -144,18 +150,21 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem1.Text = "About";
+            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.setFTPButton);
+            this.panel1.Controls.Add(this.setBPMButton);
             this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.powerTrackBar);
             this.panel1.Controls.Add(this.heartRateTrackBar);
             this.panel1.Controls.Add(this.fTPTextBox);
-            this.panel1.Controls.Add(this.heartRateMaxTextLabel);
             this.panel1.Controls.Add(this.heartRateMaxTextBox);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label12);
@@ -171,6 +180,47 @@
             this.panel1.Size = new System.Drawing.Size(730, 83);
             this.panel1.TabIndex = 1;
             // 
+            // setFTPButton
+            // 
+            this.setFTPButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setFTPButton.Location = new System.Drawing.Point(562, 50);
+            this.setFTPButton.Name = "setFTPButton";
+            this.setFTPButton.Size = new System.Drawing.Size(60, 25);
+            this.setFTPButton.TabIndex = 23;
+            this.setFTPButton.Text = "Set FTP";
+            this.setFTPButton.UseVisualStyleBackColor = true;
+            this.setFTPButton.Click += new System.EventHandler(this.setFTPButton_Click);
+            // 
+            // setBPMButton
+            // 
+            this.setBPMButton.Location = new System.Drawing.Point(340, 50);
+            this.setBPMButton.Name = "setBPMButton";
+            this.setBPMButton.Size = new System.Drawing.Size(60, 25);
+            this.setBPMButton.TabIndex = 22;
+            this.setBPMButton.Text = "Set BPM";
+            this.setBPMButton.UseVisualStyleBackColor = true;
+            this.setBPMButton.Click += new System.EventHandler(this.setBPMButton_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(606, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(14, 12);
+            this.label14.TabIndex = 21;
+            this.label14.Text = "W";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(379, 28);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(26, 12);
+            this.label17.TabIndex = 20;
+            this.label17.Text = "BPM";
+            // 
             // label16
             // 
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -181,17 +231,6 @@
             this.label16.Size = new System.Drawing.Size(49, 12);
             this.label16.TabIndex = 19;
             this.label16.Text = "Watts  /  %";
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(532, 54);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(119, 12);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "Functional Threshold Power";
             // 
             // label15
             // 
@@ -212,7 +251,7 @@
             this.powerTrackBar.Name = "powerTrackBar";
             this.powerTrackBar.Size = new System.Drawing.Size(58, 45);
             this.powerTrackBar.TabIndex = 17;
-            this.powerTrackBar.ValueChanged += new System.EventHandler(this.powerTrackBar_ValueChanged);
+            this.powerTrackBar.ValueChanged += new System.EventHandler(this.PowerTrackBar_ValueChanged);
             // 
             // heartRateTrackBar
             // 
@@ -222,36 +261,23 @@
             this.heartRateTrackBar.Name = "heartRateTrackBar";
             this.heartRateTrackBar.Size = new System.Drawing.Size(58, 45);
             this.heartRateTrackBar.TabIndex = 16;
-            this.heartRateTrackBar.ValueChanged += new System.EventHandler(this.heartRateTrackBar_ValueChanged);
+            this.heartRateTrackBar.ValueChanged += new System.EventHandler(this.HeartRateTrackBar_ValueChanged);
             // 
             // fTPTextBox
             // 
             this.fTPTextBox.Location = new System.Drawing.Point(563, 24);
             this.fTPTextBox.MaxLength = 4;
             this.fTPTextBox.Name = "fTPTextBox";
-            this.fTPTextBox.Size = new System.Drawing.Size(56, 20);
+            this.fTPTextBox.Size = new System.Drawing.Size(41, 20);
             this.fTPTextBox.TabIndex = 14;
-            this.fTPTextBox.TextChanged += new System.EventHandler(this.fTPTextBox_TextChanged);
-            // 
-            // heartRateMaxTextLabel
-            // 
-            this.heartRateMaxTextLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.heartRateMaxTextLabel.AutoSize = true;
-            this.heartRateMaxTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.heartRateMaxTextLabel.Location = new System.Drawing.Point(335, 54);
-            this.heartRateMaxTextLabel.Name = "heartRateMaxTextLabel";
-            this.heartRateMaxTextLabel.Size = new System.Drawing.Size(71, 12);
-            this.heartRateMaxTextLabel.TabIndex = 13;
-            this.heartRateMaxTextLabel.Text = "Max Heart Rate";
             // 
             // heartRateMaxTextBox
             // 
             this.heartRateMaxTextBox.Location = new System.Drawing.Point(341, 24);
             this.heartRateMaxTextBox.MaxLength = 3;
             this.heartRateMaxTextBox.Name = "heartRateMaxTextBox";
-            this.heartRateMaxTextBox.Size = new System.Drawing.Size(56, 20);
+            this.heartRateMaxTextBox.Size = new System.Drawing.Size(38, 20);
             this.heartRateMaxTextBox.TabIndex = 12;
-            this.heartRateMaxTextBox.TextChanged += new System.EventHandler(this.heartRateMaxTextBox_TextChanged);
             // 
             // label13
             // 
@@ -375,7 +401,8 @@
             // 
             this.tabControl1.Controls.Add(this.tablePage);
             this.tabControl1.Controls.Add(this.summaryPage);
-            this.tabControl1.Controls.Add(this.graphPage);
+            this.tabControl1.Controls.Add(this.graphPage1);
+            this.tabControl1.Controls.Add(this.graphPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 107);
             this.tabControl1.Name = "tabControl1";
@@ -677,15 +704,15 @@
             this.altitudeMaximumLabel.TabIndex = 15;
             this.altitudeMaximumLabel.Text = "(maximum altitude)";
             // 
-            // graphPage
+            // graphPage1
             // 
-            this.graphPage.Controls.Add(this.zedGraphControl1);
-            this.graphPage.Location = new System.Drawing.Point(4, 22);
-            this.graphPage.Name = "graphPage";
-            this.graphPage.Size = new System.Drawing.Size(722, 300);
-            this.graphPage.TabIndex = 2;
-            this.graphPage.Text = "Graph";
-            this.graphPage.UseVisualStyleBackColor = true;
+            this.graphPage1.Controls.Add(this.zedGraphControl1);
+            this.graphPage1.Location = new System.Drawing.Point(4, 22);
+            this.graphPage1.Name = "graphPage1";
+            this.graphPage1.Size = new System.Drawing.Size(722, 300);
+            this.graphPage1.TabIndex = 2;
+            this.graphPage1.Text = "Graph (*)";
+            this.graphPage1.UseVisualStyleBackColor = true;
             // 
             // zedGraphControl1
             // 
@@ -701,6 +728,31 @@
             this.zedGraphControl1.ScrollMinY2 = 0D;
             this.zedGraphControl1.Size = new System.Drawing.Size(722, 300);
             this.zedGraphControl1.TabIndex = 0;
+            // 
+            // graphPage2
+            // 
+            this.graphPage2.Controls.Add(this.zedGraphControl2);
+            this.graphPage2.Location = new System.Drawing.Point(4, 22);
+            this.graphPage2.Name = "graphPage2";
+            this.graphPage2.Size = new System.Drawing.Size(722, 300);
+            this.graphPage2.TabIndex = 3;
+            this.graphPage2.Text = "Graph (%)";
+            this.graphPage2.UseVisualStyleBackColor = true;
+            // 
+            // zedGraphControl2
+            // 
+            this.zedGraphControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zedGraphControl2.Location = new System.Drawing.Point(0, 0);
+            this.zedGraphControl2.Name = "zedGraphControl2";
+            this.zedGraphControl2.ScrollGrace = 0D;
+            this.zedGraphControl2.ScrollMaxX = 0D;
+            this.zedGraphControl2.ScrollMaxY = 0D;
+            this.zedGraphControl2.ScrollMaxY2 = 0D;
+            this.zedGraphControl2.ScrollMinX = 0D;
+            this.zedGraphControl2.ScrollMinY = 0D;
+            this.zedGraphControl2.ScrollMinY2 = 0D;
+            this.zedGraphControl2.Size = new System.Drawing.Size(722, 300);
+            this.zedGraphControl2.TabIndex = 1;
             // 
             // progressBar1
             // 
@@ -736,7 +788,8 @@
             this.summaryPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.graphPage.ResumeLayout(false);
+            this.graphPage1.ResumeLayout(false);
+            this.graphPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -768,7 +821,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Altitude;
         private System.Windows.Forms.DataGridViewTextBoxColumn Power;
         private System.Windows.Forms.DataGridViewTextBoxColumn PBPIndex;
-        private System.Windows.Forms.TabPage graphPage;
+        private System.Windows.Forms.TabPage graphPage1;
         private ZedGraph.ZedGraphControl zedGraphControl1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
@@ -791,9 +844,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox fTPTextBox;
-        private System.Windows.Forms.Label heartRateMaxTextLabel;
         private System.Windows.Forms.TextBox heartRateMaxTextBox;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
@@ -802,6 +853,12 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
+        private System.Windows.Forms.TabPage graphPage2;
+        private ZedGraph.ZedGraphControl zedGraphControl2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button setFTPButton;
+        private System.Windows.Forms.Button setBPMButton;
+        private System.Windows.Forms.Label label14;
     }
 }
 

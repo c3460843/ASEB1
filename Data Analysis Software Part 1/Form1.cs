@@ -6,6 +6,11 @@ using System.Threading;
 using System.Windows.Forms;
 using ZedGraph;
 
+
+/// <author>
+/// c3460843
+/// </author>
+
 namespace Data_Analysis_Software_Part_1
 {
     public partial class Form1 : Form
@@ -13,17 +18,18 @@ namespace Data_Analysis_Software_Part_1
         Stream myStream = null;
         int counter = 0;
         int timeSecs = 0;
+        int interval;
         double speedTotal = 0;
         double speedMaximum = 0;
         double altitudeTotal = 0;
         double altitudeMaximum = 0;
         int heartRateTotal = 0;
-        int userSetHeartRateMaximum;
+        int userSetHeartRateMaximum = 0;
         int heartRateMaximum = 0;
         int heartRateMinimum = 0;
         int powerTotal = 0;
         int powerMaximum = 0;
-        int userSetFTP;
+        int userSetFTP = 0;
         decimal distanceTotal = 0;
         bool distanceCalculationFlag = false;
         int version;
@@ -36,7 +42,7 @@ namespace Data_Analysis_Software_Part_1
         bool sModeHRCC;
         bool sModeUnitStandard;
         bool sModeAirPressure;
-        static List<string> timeList = new List<string>();
+        List<string> timeList = new List<string>();
         List<double> speedList = new List<double>();
         List<int> cadenceList = new List<int>();
         List<double> altitudeList = new List<double>();
@@ -52,6 +58,9 @@ namespace Data_Analysis_Software_Part_1
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Reads the file then splits line by line into lists of data.
+        /// </summary>
         public void Read()
         {
             string line;
@@ -69,20 +78,21 @@ namespace Data_Analysis_Software_Part_1
                 {
                     String[] lineArray = line.Split('=');
                     char[] sModeChars = lineArray[1].ToCharArray();
+                    int i = 0;
                     if (version >= 106)
                     {
-                        if (sModeChars[0] == '0') { sModeSpeed = false; }                  else if (sModeChars[0] == '1') { sModeSpeed = true; }
-                        if (sModeChars[1] == '0') { sModeCadence = false; }                else if (sModeChars[1] == '1') { sModeCadence = true; }
-                        if (sModeChars[2] == '0') { sModeAltitude = false; }               else if (sModeChars[2] == '1') { sModeAltitude = true; }
-                        if (sModeChars[3] == '0') { sModePower = false; }                  else if (sModeChars[3] == '1') { sModePower = true; }
-                        if (sModeChars[4] == '0') { sModePowerLeftRightBalance = false; }  else if (sModeChars[4] == '1') { sModePowerLeftRightBalance = true; }
-                        if (sModeChars[5] == '0') { sModePowerPedallingIndex = false; }    else if (sModeChars[5] == '1') { sModePowerPedallingIndex = true; }
-                        if (sModeChars[6] == '0') { sModeHRCC = false; }                   else if (sModeChars[6] == '1') { sModeHRCC = true; }
-                        if (sModeChars[7] == '0') { sModeUnitStandard = false; }           else if (sModeChars[7] == '1') { sModeUnitStandard = true; }
+                        if (sModeChars[i] == '0') { sModeSpeed = false; i++; }                  else if (sModeChars[i] == '1') { sModeSpeed = true; i++; }
+                        if (sModeChars[i] == '0') { sModeCadence = false; i++; }                else if (sModeChars[i] == '1') { sModeCadence = true; i++; }
+                        if (sModeChars[i] == '0') { sModeAltitude = false; i++; }               else if (sModeChars[i] == '1') { sModeAltitude = true; i++; }
+                        if (sModeChars[i] == '0') { sModePower = false; i++; }                  else if (sModeChars[i] == '1') { sModePower = true; i++; }
+                        if (sModeChars[i] == '0') { sModePowerLeftRightBalance = false; i++; }  else if (sModeChars[i] == '1') { sModePowerLeftRightBalance = true; i++; }
+                        if (sModeChars[i] == '0') { sModePowerPedallingIndex = false; i++; }    else if (sModeChars[i] == '1') { sModePowerPedallingIndex = true; i++; }
+                        if (sModeChars[i] == '0') { sModeHRCC = false; i++; }                   else if (sModeChars[i] == '1') { sModeHRCC = true; i++; }
+                        if (sModeChars[i] == '0') { sModeUnitStandard = false; i++; }           else if (sModeChars[i] == '1') { sModeUnitStandard = true; i++; }
                     }
                     if (version >= 107)
                     {
-                        if (sModeChars[8] == '0') { sModeAirPressure = false; }            else if (sModeChars[8] == '1') { sModeAirPressure = true; }
+                        if (sModeChars[i] == '0') { sModeAirPressure = false; i++; }            else if (sModeChars[8] == '1') { sModeAirPressure = true; i++; }
                     }
                     Console.WriteLine("Version="+version);
                     Console.WriteLine("SMode="+sModeChars[0].ToString() + sModeChars[1].ToString() + sModeChars[2].ToString() +
@@ -107,6 +117,7 @@ namespace Data_Analysis_Software_Part_1
                 {
                     String[] lineArray = line.Split('=');
                     intervalLabel.Text = lineArray[1] + "s";
+                    interval = Int32.Parse(lineArray[1]);
                 }
 
                 if (line.Contains("HRData"))
@@ -119,7 +130,7 @@ namespace Data_Analysis_Software_Part_1
                     TimeSpan timeSpan = TimeSpan.FromSeconds(timeSecs);
                     if (!line.Contains("HRData"))
                     {
-                        timeSecs++;
+                        timeSecs+=interval;
                         string timeString = timeSpan.ToString(@"hh\:mm\:ss");
                         String[] lineArray = line.Split();
                         timeList.Add(timeString);
@@ -143,8 +154,13 @@ namespace Data_Analysis_Software_Part_1
             Calculate();
             heartRateTrackBar.Value = 0;
             powerTrackBar.Value = 0;
+
         }
 
+
+        /// <summary>
+        /// Adds rows of data from lists to a data grid.       
+        /// </summary>
         private void AddRows()
         {
             for (int i = 0; i < timeList.Count; i++)
@@ -159,17 +175,22 @@ namespace Data_Analysis_Software_Part_1
                 if (sModeAltitude==true) { altitudeValue = altitudeList[i].ToString(); }
                 if (sModePower == true)
                 {
-                    if (powerTrackBar.Value == 0) { powerValue = powerList[i].ToString(); }
+                    if (powerTrackBar.Value == 0)      { powerValue = powerList[i].ToString(); }
                     else if (powerTrackBar.Value == 1) { powerValue = Math.Round(powerPercentageList[i], 2).ToString(); }
                 }
-                if (heartRateTrackBar.Value == 0)      { heartRateValue = heartRateList[i].ToString(); }
-                else if (heartRateTrackBar.Value == 1) { heartRateValue = Math.Round(heartRatePercentageList[i], 2).ToString(); }
-
+                if (sModeHRCC == true)
+                {
+                    if (heartRateTrackBar.Value == 0)      { heartRateValue = heartRateList[i].ToString(); }
+                    else if (heartRateTrackBar.Value == 1) { heartRateValue = Math.Round(heartRatePercentageList[i], 2).ToString(); }
+                }
                 dataGridView.Rows.Add(timeList[i], heartRateValue, speedValue, cadenceValue, altitudeValue, powerValue, pBBIList[i]);
             }
-            Console.WriteLine("AddRows");
+            Console.WriteLine("AddRows()");
         }
 
+        /// <summary>
+        /// Calculates all the averages, minimums and maximums from the lists.
+        /// </summary>
         private void Calculate()
         {
             speedTotal = 0;
@@ -215,7 +236,6 @@ namespace Data_Analysis_Software_Part_1
 
                 foreach (int heartRateInt in heartRateList) { if (heartRateInt > heartRateMaximum) { heartRateMaximum = heartRateInt; } }
                 heartRateMaximumLabel.Text = heartRateMaximum + "bpm";
-                heartRateMaxTextBox.Text = heartRateMaximum.ToString();
 
                 heartRateMinimum = heartRateList[0];
                 foreach (int heartRateInt in heartRateList) { if (heartRateInt < heartRateMinimum) { heartRateMinimum = heartRateInt; } }
@@ -223,7 +243,6 @@ namespace Data_Analysis_Software_Part_1
 
                 foreach (int powerInt in powerList) { if (powerInt > powerMaximum) { powerMaximum = powerInt; } }
                 powerMaximumLabel.Text = powerMaximum + "W";
-                fTPTextBox.Text = powerMaximum.ToString();
 
                 foreach (double altitudeInt in altitudeList) { if (altitudeInt > altitudeMaximum) { altitudeMaximum = altitudeInt; } }
                 if (measurementTrackBar.Value == 0) { altitudeMaximumLabel.Text = altitudeMaximum + "m"; }
@@ -233,50 +252,99 @@ namespace Data_Analysis_Software_Part_1
             {
                 //No user dialogue needed.
             }
+            Console.WriteLine("Calculate()");
         }
 
-        private void PlotGraph()
+        /// <summary>
+        /// Plots the zedGraph for numerical data.
+        /// </summary>
+        private void PlotGraph1()
         {
+            Console.WriteLine(1);
             zedGraphControl1.GraphPane.CurveList.Clear();
             zedGraphControl1.GraphPane.GraphObjList.Clear();
-            GraphPane myPane = zedGraphControl1.GraphPane;            
+            GraphPane myPane1 = zedGraphControl1.GraphPane;
 
-            myPane.XAxis.Title.Text = "Time (Seconds)";
-            myPane.XAxis.Scale.Max = timeSecs;
+            Console.WriteLine(2);
+            myPane1.XAxis.Title.Text = "Time (Seconds)";
+            myPane1.YAxis.Title.Text = "";
+            myPane1.XAxis.Scale.Max = timeSecs;
             PointPairList speedPairList = new PointPairList();
             PointPairList cadencePairList = new PointPairList();
             PointPairList altitudePairList = new PointPairList();
             PointPairList heartRatePairList = new PointPairList();
             PointPairList powerPairList = new PointPairList();
 
+            Console.WriteLine(3);
             for (int i = 0; i < timeSecs; i++)
             {
-                speedPairList.Add(i, (speedList[i]/10));
+                speedPairList.Add(i, (speedList[i] / 10));
                 cadencePairList.Add(i, cadenceList[i]);
                 altitudePairList.Add(i, altitudeList[i]);
                 heartRatePairList.Add(i, heartRateList[i]);
                 powerPairList.Add(i, powerList[i]);
-
-                //Console.WriteLine(i);
             }
 
-            LineItem speedCurve = myPane.AddCurve("Speed",
+            Console.WriteLine(4);
+            LineItem speedCurve = myPane1.AddCurve("Speed",
                    speedPairList, Color.Red, SymbolType.None);
 
-            LineItem cadenceCurve = myPane.AddCurve("Cadence",
+            LineItem cadenceCurve = myPane1.AddCurve("Cadence",
                   cadencePairList, Color.Green, SymbolType.None);
 
-            LineItem altitudeCurve = myPane.AddCurve("Altitude",
+            LineItem altitudeCurve = myPane1.AddCurve("Altitude",
                   altitudePairList, Color.Gray, SymbolType.None);
 
-            LineItem heartRateCurve = myPane.AddCurve("Heart Rate",
+            LineItem heartRateCurve = myPane1.AddCurve("Heart Rate",
                   heartRatePairList, Color.Purple, SymbolType.None);
 
-            LineItem teamBCurve = myPane.AddCurve("Power",
+            LineItem powerCurve = myPane1.AddCurve("Power",
                   powerPairList, Color.Orange, SymbolType.None);
 
             zedGraphControl1.AxisChange();
             zedGraphControl1.Refresh();
+
+            Console.WriteLine("PlotGraph1()");
+        }
+
+        /// <summary>
+        /// Plots the zedGraph for percentage data.
+        /// </summary>
+        private void PlotGraph2()
+        {
+            try
+            {
+                zedGraphControl2.GraphPane.CurveList.Clear();
+                zedGraphControl2.GraphPane.GraphObjList.Clear();
+                GraphPane myPane2 = zedGraphControl2.GraphPane;
+
+                myPane2.XAxis.Title.Text = "Time (Seconds)";
+                myPane2.YAxis.Title.Text = "%";
+                myPane2.XAxis.Scale.Max = timeSecs;
+                PointPairList heartRatePercentagePairList = new PointPairList();
+                PointPairList powerPercentagePairList = new PointPairList();
+
+                for (int i = 0; i < timeSecs; i++)
+                {
+                    heartRatePercentagePairList.Add(i, heartRatePercentageList[i]);
+                    powerPercentagePairList.Add(i, powerPercentageList[i]);
+                }
+
+                LineItem heartRatePercentageCurve = myPane2.AddCurve("Heart Rate",
+                      heartRatePercentagePairList, Color.Purple, SymbolType.None);
+
+                LineItem powerPercentageCurve = myPane2.AddCurve("Power",
+                      powerPercentagePairList, Color.Orange, SymbolType.None);
+
+                zedGraphControl2.AxisChange();
+                zedGraphControl2.Refresh();
+
+                Console.WriteLine("PlotGraph2()");
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void SetSize()
@@ -284,6 +352,9 @@ namespace Data_Analysis_Software_Part_1
             zedGraphControl1.Location = new Point(0, 0);
             zedGraphControl1.IsShowPointValues = true;
             zedGraphControl1.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 50);
+            zedGraphControl2.Location = new Point(0, 0);
+            zedGraphControl2.IsShowPointValues = true;
+            zedGraphControl2.Size = new Size(this.ClientRectangle.Width - 20, this.ClientRectangle.Height - 50);
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -291,10 +362,14 @@ namespace Data_Analysis_Software_Part_1
             SetSize();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Listens for File...Open click, and creates open file dialog.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
             openFileDialog1.InitialDirectory = "c:\\";
             openFileDialog1.Filter = "text files (*.txt)|*.txt|All files (*.*)|*.*";
             openFileDialog1.FilterIndex = 2;
@@ -309,8 +384,9 @@ namespace Data_Analysis_Software_Part_1
                 {
                     if ((myStream = openFileDialog1.OpenFile()) != null)
                     {
+                        dataGridView.Rows.Clear();
                         Read();
-                        PlotGraph();
+                        PlotGraph1();
                     }
                 }
                 catch (Exception ex)
@@ -320,6 +396,11 @@ namespace Data_Analysis_Software_Part_1
             }
         }
 
+        /// <summary>
+        /// Listens for change in Metric/Imperial trackbar value change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void measurementTrackBar_ValueChanged(object sender, EventArgs e)
         {
             dataGridView.Rows.Clear();
@@ -334,9 +415,13 @@ namespace Data_Analysis_Software_Part_1
             AddRows();
             Thread.Sleep(50);
             Calculate();
-            PlotGraph();
+            PlotGraph1();
+            Console.WriteLine("measurementTrackBar_ValueChanged()");
         }
 
+        /// <summary>
+        /// Maths for converting metric into imperial.
+        /// </summary>
         private void Imperial()
         {
             for (int i = 0; i < speedList.Count; i++)
@@ -353,6 +438,9 @@ namespace Data_Analysis_Software_Part_1
             altitudeMaximum = Math.Round(altitudeMaximum * 3.2808);
         }
 
+        /// <summary>
+        /// Maths for converting imperial into metric.
+        /// </summary>
         private void Metric()
         {
             for (int i = 0; i < speedList.Count; i++)
@@ -369,7 +457,41 @@ namespace Data_Analysis_Software_Part_1
             altitudeMaximum = Math.Round(altitudeMaximum * 0.3048);
         }
 
-        private void heartRateMaxTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Listens for change in numerical/percentage heart rate trackbar value change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HeartRateTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (userSetHeartRateMaximum != 0)
+            {
+                Console.WriteLine("HeartRateTrackBar_ValueChanged()");
+                dataGridView.Rows.Clear();
+                AddRows();
+            }
+        }
+        /// <summary>
+        /// Listens for change in numerical/percentage power trackbar value change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PowerTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            if (userSetFTP != 0)
+            {
+                Console.WriteLine("PowerTrackBar_ValueChanged()");
+                dataGridView.Rows.Clear();
+                AddRows();
+            }
+        }
+
+        /// <summary>
+        /// Button for setting user defined heart rate in beats per minute.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void setBPMButton_Click(object sender, EventArgs e)
         {
             dataGridView.Rows.Clear();
             try
@@ -384,15 +506,15 @@ namespace Data_Analysis_Software_Part_1
             heartRatePercentageList.Clear();
             foreach (double heartRateInt in heartRateList) { heartRatePercentageList.Add((heartRateInt / userSetHeartRateMaximum) * 100); }
             AddRows();
+            PlotGraph2();
         }
 
-        private void heartRateTrackBar_ValueChanged(object sender, EventArgs e)
-        {
-            dataGridView.Rows.Clear();
-            AddRows();
-        }
-
-        private void fTPTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Button for setting user defined power in watts.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void setFTPButton_Click(object sender, EventArgs e)
         {
             dataGridView.Rows.Clear();
             try
@@ -404,14 +526,20 @@ namespace Data_Analysis_Software_Part_1
                 MessageBox.Show("Enter valid functional threshold power(W).");
                 fTPTextBox.Text = powerMaximum.ToString();
             }
+            powerPercentageList.Clear();
             foreach (double powerInt in powerList) { powerPercentageList.Add((powerInt / userSetFTP) * 100); }
             AddRows();
+            PlotGraph2();
         }
 
-        private void powerTrackBar_ValueChanged(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataGridView.Rows.Clear();
-            AddRows();
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Created by c3460843 using ZedGraph.");
         }
     }
 }
