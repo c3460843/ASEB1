@@ -61,13 +61,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tablePage = new System.Windows.Forms.TabPage();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HeartRates = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Speed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cadence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Altitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Power = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PBPIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.summaryPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -91,6 +84,13 @@
             this.graphPage2 = new System.Windows.Forms.TabPage();
             this.zedGraphControl2 = new ZedGraph.ZedGraphControl();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HeartRates = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Speed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cadence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Altitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Power = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PBPIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.powerTrackBar)).BeginInit();
@@ -112,7 +112,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(730, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(758, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -128,14 +128,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -150,7 +150,7 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
@@ -177,7 +177,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(730, 83);
+            this.panel1.Size = new System.Drawing.Size(758, 83);
             this.panel1.TabIndex = 1;
             // 
             // setFTPButton
@@ -226,7 +226,7 @@
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(663, 54);
+            this.label16.Location = new System.Drawing.Point(691, 54);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(49, 12);
             this.label16.TabIndex = 19;
@@ -237,7 +237,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(436, 54);
+            this.label15.Location = new System.Drawing.Point(464, 54);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(45, 12);
             this.label15.TabIndex = 18;
@@ -246,7 +246,7 @@
             // powerTrackBar
             // 
             this.powerTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.powerTrackBar.Location = new System.Drawing.Point(660, 21);
+            this.powerTrackBar.Location = new System.Drawing.Point(688, 21);
             this.powerTrackBar.Maximum = 1;
             this.powerTrackBar.Name = "powerTrackBar";
             this.powerTrackBar.Size = new System.Drawing.Size(58, 45);
@@ -256,7 +256,7 @@
             // heartRateTrackBar
             // 
             this.heartRateTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.heartRateTrackBar.Location = new System.Drawing.Point(429, 21);
+            this.heartRateTrackBar.Location = new System.Drawing.Point(457, 21);
             this.heartRateTrackBar.Maximum = 1;
             this.heartRateTrackBar.Name = "heartRateTrackBar";
             this.heartRateTrackBar.Size = new System.Drawing.Size(58, 45);
@@ -314,7 +314,7 @@
             this.speedSelectLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.speedSelectLabel.AutoSize = true;
             this.speedSelectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.speedSelectLabel.Location = new System.Drawing.Point(212, 54);
+            this.speedSelectLabel.Location = new System.Drawing.Point(240, 54);
             this.speedSelectLabel.Name = "speedSelectLabel";
             this.speedSelectLabel.Size = new System.Drawing.Size(72, 12);
             this.speedSelectLabel.TabIndex = 8;
@@ -323,7 +323,7 @@
             // measurementTrackBar
             // 
             this.measurementTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.measurementTrackBar.Location = new System.Drawing.Point(218, 21);
+            this.measurementTrackBar.Location = new System.Drawing.Point(246, 21);
             this.measurementTrackBar.Maximum = 1;
             this.measurementTrackBar.Name = "measurementTrackBar";
             this.measurementTrackBar.Size = new System.Drawing.Size(58, 45);
@@ -407,7 +407,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 107);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(730, 326);
+            this.tabControl1.Size = new System.Drawing.Size(758, 326);
             this.tabControl1.TabIndex = 2;
             // 
             // tablePage
@@ -416,7 +416,7 @@
             this.tablePage.Location = new System.Drawing.Point(4, 22);
             this.tablePage.Name = "tablePage";
             this.tablePage.Padding = new System.Windows.Forms.Padding(3);
-            this.tablePage.Size = new System.Drawing.Size(722, 300);
+            this.tablePage.Size = new System.Drawing.Size(750, 300);
             this.tablePage.TabIndex = 0;
             this.tablePage.Text = "Table";
             this.tablePage.UseVisualStyleBackColor = true;
@@ -436,57 +436,8 @@
             this.dataGridView.Location = new System.Drawing.Point(3, 3);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView.Size = new System.Drawing.Size(716, 294);
+            this.dataGridView.Size = new System.Drawing.Size(744, 294);
             this.dataGridView.TabIndex = 0;
-            // 
-            // Time
-            // 
-            this.Time.HeaderText = "Time (hh:mm:ss)";
-            this.Time.Name = "Time";
-            this.Time.ReadOnly = true;
-            this.Time.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // HeartRates
-            // 
-            this.HeartRates.HeaderText = "Heart Rates (bpm)";
-            this.HeartRates.Name = "HeartRates";
-            this.HeartRates.ReadOnly = true;
-            this.HeartRates.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Speed
-            // 
-            this.Speed.HeaderText = "Speed (km/h)";
-            this.Speed.Name = "Speed";
-            this.Speed.ReadOnly = true;
-            this.Speed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Cadence
-            // 
-            this.Cadence.HeaderText = "Cadence (rpm)";
-            this.Cadence.Name = "Cadence";
-            this.Cadence.ReadOnly = true;
-            this.Cadence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Altitude
-            // 
-            this.Altitude.HeaderText = "Altitude (m)";
-            this.Altitude.Name = "Altitude";
-            this.Altitude.ReadOnly = true;
-            this.Altitude.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Power
-            // 
-            this.Power.HeaderText = "Power (Watts)";
-            this.Power.Name = "Power";
-            this.Power.ReadOnly = true;
-            this.Power.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PBPIndex
-            // 
-            this.PBPIndex.HeaderText = "PBP Index";
-            this.PBPIndex.Name = "PBPIndex";
-            this.PBPIndex.ReadOnly = true;
-            this.PBPIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // summaryPage
             // 
@@ -760,14 +711,64 @@
             this.progressBar1.Location = new System.Drawing.Point(0, 426);
             this.progressBar1.MaximumSize = new System.Drawing.Size(0, 7);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(730, 7);
+            this.progressBar1.Size = new System.Drawing.Size(758, 7);
             this.progressBar1.TabIndex = 3;
+            // 
+            // Time
+            // 
+            this.Time.HeaderText = "Time                   (hh:mm:ss)";
+            this.Time.Name = "Time";
+            this.Time.ReadOnly = true;
+            this.Time.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // HeartRates
+            // 
+            this.HeartRates.HeaderText = "Heart Rates          (bpm / % of max)";
+            this.HeartRates.Name = "HeartRates";
+            this.HeartRates.ReadOnly = true;
+            this.HeartRates.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.HeartRates.Width = 120;
+            // 
+            // Speed
+            // 
+            this.Speed.HeaderText = "Speed                 (kmh / mph)";
+            this.Speed.Name = "Speed";
+            this.Speed.ReadOnly = true;
+            this.Speed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Cadence
+            // 
+            this.Cadence.HeaderText = "Cadence             (rpm)";
+            this.Cadence.Name = "Cadence";
+            this.Cadence.ReadOnly = true;
+            this.Cadence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Altitude
+            // 
+            this.Altitude.HeaderText = "Altitude              (m / ft)";
+            this.Altitude.Name = "Altitude";
+            this.Altitude.ReadOnly = true;
+            this.Altitude.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Power
+            // 
+            this.Power.HeaderText = "Power      (Watts / % of FTP)";
+            this.Power.Name = "Power";
+            this.Power.ReadOnly = true;
+            this.Power.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PBPIndex
+            // 
+            this.PBPIndex.HeaderText = "PBP Index";
+            this.PBPIndex.Name = "PBPIndex";
+            this.PBPIndex.ReadOnly = true;
+            this.PBPIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(730, 433);
+            this.ClientSize = new System.Drawing.Size(758, 433);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
@@ -814,13 +815,6 @@
         private System.Windows.Forms.Label altitudeAverageLabel;
         private System.Windows.Forms.Label speedSelectLabel;
         private System.Windows.Forms.TrackBar measurementTrackBar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Time;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HeartRates;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Speed;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cadence;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Altitude;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Power;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PBPIndex;
         private System.Windows.Forms.TabPage graphPage1;
         private ZedGraph.ZedGraphControl zedGraphControl1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -859,6 +853,13 @@
         private System.Windows.Forms.Button setFTPButton;
         private System.Windows.Forms.Button setBPMButton;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HeartRates;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Speed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cadence;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Altitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Power;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PBPIndex;
     }
 }
 
